@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_rect">
+
+    <TextView
+        android:paddingTop="10dp"
+        android:background="@android:color/white"
+        android:layout_marginLeft="20dp"
+        android:text="0012863888"
+        android:textStyle="bold"
+        android:id="@+id/tvPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:src="@mipmap/ic_incoming_call"
+            android:id="@+id/ivPhoneType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center_vertical"
+            android:id="@+id/tvPhoneData"
+            android:text="March 23"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
