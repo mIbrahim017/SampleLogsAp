@@ -3,6 +3,7 @@ package mohamedibrahim.Tabs.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+import mohamedibrahim.Fragments.OtherRecentFragment;
 import mohamedibrahim.Fragments.RecentFragment;
 
 /**
@@ -11,6 +12,7 @@ import mohamedibrahim.Fragments.RecentFragment;
 public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
 
     private static final String[] fragments = {"RECENT", "ANOTHER RECENT"};
+    private static final Fragment[] currentFragments = {RecentFragment.newInstance(), OtherRecentFragment.newInstance()};
 
 
     public FragmentPagerAdapter(FragmentManager fm) {
@@ -20,8 +22,10 @@ public class FragmentPagerAdapter extends android.support.v4.app.FragmentPagerAd
     @Override
     public Fragment getItem(int i) {
 
-        RecentFragment recentFragment = RecentFragment.newInstance();
-        return recentFragment;
+        return currentFragments[i];
+
+        //RecentFragment recentFragment = RecentFragment.newInstance();
+        //return recentFragment;
     }
 
     @Override

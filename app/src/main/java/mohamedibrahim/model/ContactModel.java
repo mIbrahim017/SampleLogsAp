@@ -1,5 +1,8 @@
 package mohamedibrahim.model;
 
+import android.database.Cursor;
+import android.provider.CallLog;
+
 import java.util.Date;
 
 /**
@@ -10,6 +13,7 @@ public class ContactModel {
     private String phoneNumber;
     private Date callDate;
     private int phoneType;
+    private long date;
 
 
     public ContactModel() {
@@ -24,6 +28,15 @@ public class ContactModel {
 
 
     // setter & getter
+
+
+    public void setsDate(long sDate) {
+        this.date = sDate;
+    }
+
+    public long getsDate() {
+        return date;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -50,4 +63,20 @@ public class ContactModel {
     }
 
 
+    public static ContactModel fromCursor(Cursor c) {
+
+        ContactModel contactModel = new ContactModel();
+        String num = c.getString(c.getColumnIndex(CallLog.Calls.NUMBER));// for  number
+        String name = c.getString(c.getColumnIndex(CallLog.Calls.CACHED_NAME));// for name
+        String duration = c.getString(c.getColumnIndex(CallLog.Calls.DURATION));// for duration
+        int type = Integer.parseInt(c.getString(c.getColumnIndex(CallLog.Calls.TYPE)));// type
+        long date = c.getLong(c.getColumnIndex(CallLog.Calls.DATE));
+
+
+        contactModel.setPhoneNumber(num);
+        contactModel.setsDate(date);
+        contactModel.setPhoneType(type);
+
+        return contactModel;
+    }
 }

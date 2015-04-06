@@ -1,5 +1,7 @@
 package mohamedibrahim.sampleproject;
 
+import android.provider.CallLog;
+
 /**
  * Created by Mohamed on 4/1/2015.
  */
@@ -9,6 +11,10 @@ public class Constants {
     public static final int INCOMING = R.mipmap.ic_incoming_call;
     public static final int MISSED = R.mipmap.ic_missed_call;
     public static final int OUT = R.mipmap.ic_outgoing_call;
+
+
+
+
 
 
 }

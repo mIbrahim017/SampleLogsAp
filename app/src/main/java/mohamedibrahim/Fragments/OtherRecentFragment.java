@@ -1,8 +1,8 @@
 package mohamedibrahim.Fragments;
 
-
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,21 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.Date;
-
-import mohamedibrahim.Adapters.CustomPhoneAdatper;
-import mohamedibrahim.model.ContactModel;
-import mohamedibrahim.sampleproject.Constants;
+import mohamedibrahim.Adapters.MyListCursorAdapter;
 import mohamedibrahim.sampleproject.R;
 
-
-public class RecentFragment extends Fragment {
+/**
+ * Created by Mohamed on 4/6/2015.
+ */
+public class OtherRecentFragment extends Fragment {
 
     // list
-    private CustomPhoneAdatper mAdapter;
+    private MyListCursorAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<ContactModel> listOfContacts;
+    private Cursor mCursor;
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -32,12 +29,12 @@ public class RecentFragment extends Fragment {
     private RecyclerView mRecyclerView;
 
 
-    public static RecentFragment newInstance() {
-        RecentFragment fragment = new RecentFragment();
+    public static OtherRecentFragment newInstance() {
+        OtherRecentFragment fragment = new OtherRecentFragment();
         return fragment;
     }
 
-    public RecentFragment() {
+    public OtherRecentFragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +42,19 @@ public class RecentFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (listOfContacts == null) {
-            fillListOfContacts();
-        }
+
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (mCursor == null)
+            mCursor = getActivity().getContentResolver().query(android.provider.CallLog.Calls.CONTENT_URI, null, null, null, null);
+
+        mAdapter = new MyListCursorAdapter(getActivity(), mCursor);
+        mRecyclerView.setAdapter(mAdapter);
+
+    }
 
     private void getRecentCallLogs() {
 
@@ -58,21 +63,6 @@ public class RecentFragment extends Fragment {
 
     }
 
-    private void fillListOfContacts() {
-
-
-        listOfContacts = new ArrayList<>();
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.INCOMING));
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.INCOMING));
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.MISSED));
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.MISSED));
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.OUT));
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.OUT));
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.MISSED));
-        listOfContacts.add(new ContactModel("0125454545", new Date(), Constants.INCOMING));
-
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,9 +73,6 @@ public class RecentFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new CustomPhoneAdatper(getActivity(), listOfContacts);
-        mRecyclerView.setAdapter(mAdapter);
 
 
         return v;
