@@ -3,7 +3,6 @@ package mohamedibrahim.Fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +18,7 @@ import mohamedibrahim.sampleproject.Constants;
 import mohamedibrahim.sampleproject.R;
 
 
-public class RecentFragment extends Fragment {
+public class RecentFragment extends BaseFragment {
 
     // list
     private CustomPhoneAdatper mAdapter;
@@ -30,6 +29,11 @@ public class RecentFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView mRecyclerView;
+
+    @Override
+    public String getFragmentName() {
+        return "RECENT";
+    }
 
 
     public static RecentFragment newInstance() {

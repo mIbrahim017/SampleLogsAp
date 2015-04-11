@@ -3,7 +3,6 @@ package mohamedibrahim.Fragments;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +15,7 @@ import mohamedibrahim.sampleproject.R;
 /**
  * Created by Mohamed on 4/6/2015.
  */
-public class OtherRecentFragment extends Fragment {
+public class OtherRecentFragment extends BaseFragment {
 
     // list
     private MyListCursorAdapter mAdapter;
@@ -28,8 +27,13 @@ public class OtherRecentFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView mRecyclerView;
 
+    @Override
+    public String getFragmentName() {
+        return "ANOTHER RECENT";
+    }
 
-    public static OtherRecentFragment newInstance() {
+
+        public static OtherRecentFragment newInstance() {
         OtherRecentFragment fragment = new OtherRecentFragment();
         return fragment;
     }
